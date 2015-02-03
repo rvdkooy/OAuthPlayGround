@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Thinktecture.IdentityServer.Core.Services.InMemory;
 
-namespace IdentityServer
+namespace IdentityServer.Settings
 {
     internal static class Users
     {
@@ -13,7 +13,7 @@ namespace IdentityServer
                 {
                     Username = "bob",
                     Password = "secret",
-                    Subject = "1"
+                    Subject = "1",
                 }
             };
         }

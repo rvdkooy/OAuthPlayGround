@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+using IdentityServer.Settings;
 using Microsoft.Owin.Hosting;
 using Owin;
 using Thinktecture.IdentityServer.Core.Configuration;
 using Thinktecture.IdentityServer.Core.Logging;
-using Thinktecture.IdentityServer.Core.Services.InMemory;
 
 namespace IdentityServer
 {
@@ -30,9 +26,6 @@ namespace IdentityServer
     {
         public void Configuration(IAppBuilder app)
         {
-            
-            
-            
             LogProvider.SetCurrentLogProvider(new DiagnosticsTraceLogProvider());
             var factory = InMemoryFactory.Create(
                 users: Users.Get(),
@@ -43,12 +36,7 @@ namespace IdentityServer
             {
                 SigningCertificate = LoadCertificate(),
                 Factory = factory,
-                //AuthenticationOptions = new Thinktecture.IdentityServer.Core.Configuration.AuthenticationOptions
-                //{
-                //    IdentityProviders = ConfigureIdentityProviders
-                //}
             };
-
 
             app.Map("/identity", builder => builder.UseIdentityServer(options));
         }
@@ -59,6 +47,4 @@ namespace IdentityServer
                 string.Format(@"{0}\..\..\idsrv3test.pfx", AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
         }
     }
-
-
 }

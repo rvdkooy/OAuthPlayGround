@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Thinktecture.IdentityServer.Core.Models;
 
-namespace IdentityServer
+namespace IdentityServer.Settings
 {
     internal static class Clients
     {
@@ -15,7 +15,6 @@ namespace IdentityServer
                     ClientName = "MVC Client",
                     ClientId = "mvc",
                     Flow = Flows.Implicit,
-
                     RedirectUris = new List<string>
                     {
                         "https://localhost:44300/"
@@ -23,8 +22,10 @@ namespace IdentityServer
                     PostLogoutRedirectUris = new List<string>
                     {
                         "https://localhost:44300/"
-                    }
-                },new Client 
+                    },
+                    RequireConsent = false // disables the permissions page after logging in
+                }
+                ,new Client 
                 {
                     Enabled = true,
                     ClientName = "MVC Client 2",
@@ -38,7 +39,9 @@ namespace IdentityServer
                     PostLogoutRedirectUris = new List<string>
                     {
                         "https://localhost:44302/"
-                    }
+                    },
+                    AlwaysSendClientClaims = true,
+                    RequireConsent = false // disables the permissions page after logging in
                 },
             };
         }
